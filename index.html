@@ -5,12 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discount code generator</title>
-
-    <style>
-        button {
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -20,6 +15,11 @@
     <label for=""></label>
     <input type="text" placeholder="Dodaj własne znaki">
 
+    <select name="" id="">
+        <option value="at the end">at the end</option>
+        <option value="at the beginning">at the beginning</option>
+    </select>
+
     <div class="box">
         <ol></ol>
     </div>
@@ -28,13 +28,13 @@
     <script>
 
         const charSet = 'ABCDEFGHIJKLMNOPRSTUWXYZ0123456789';
-
         let code = '';
         let randomIndex = '';
         const numberAmount = 4;
         const btn = document.querySelector('button');
         const ol = document.querySelector('ol');
         let ownChars = document.querySelector('input');
+        let select = document.querySelector('select');
 
         function codeGen() {
 
@@ -43,10 +43,16 @@
                 code += charSet[randomIndex];
                 li = document.createElement('li');
             }
-            code += ownChars.value.toUpperCase();
+
+            if (select.value == 'at the end') {
+                code = code + ownChars.value.toUpperCase();
+                ol.appendChild(li);
+            } else {
+                code = ownChars.value.toUpperCase() + code;
+                ol.appendChild(li);
+            }
+
             li.innerHTML = code;
-            ol.appendChild(li);
-            // console.log(code);
             code = '';
         }
 
