@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount code generator</title>
+</head>
+
+<body>
+    <h1>Discout code generator</h1>
+    <button>Generuj kod</button>
+
+    <label for=""></label>
+    <input type="text" placeholder="Dodaj własne znaki">
+
+    <div class="box">
+        <ol></ol>
+    </div>
+
+
+    <script>
+
+        const charSet = 'ABCDEFGHIJKLMNOPRSTUWXYZ0123456789';
+
+        let code = '';
+        let randomIndex = '';
+        const numberAmount = 4;
+        const btn = document.querySelector('button');
+        const ol = document.querySelector('ol');
+        let ownChars = document.querySelector('input');
+
+        function codeGen() {
+
+            for (i = 0; i < numberAmount; i++) {
+                randomIndex = Math.floor(Math.random() * 34);
+                code += charSet[randomIndex];
+                li = document.createElement('li');
+            }
+            code += ownChars.value.toUpperCase();
+            li.innerHTML = code;
+            ol.appendChild(li);
+            // console.log(code);
+            code = '';
+        }
+
+        btn.addEventListener('click', codeGen);
+
+    </script>
+</body>
+
+</html>
